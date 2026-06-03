@@ -204,6 +204,8 @@ For Render:
 Add screenshots for:
 
 - Swagger docs at `/api/docs`
+- <img width="1760" height="419" alt="Screenshot 2026-06-03 213646" src="https://github.com/user-attachments/assets/27ea1d5e-0238-4d2d-8c46-9fb3addbea04" />
+
 - Register/login API call
 - Meeting analysis response
 - Telegram overdue reminder demo
