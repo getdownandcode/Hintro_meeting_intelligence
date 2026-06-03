@@ -154,6 +154,34 @@ npm test
 
 Current tests cover AI output parsing and citation validation.
 
+## Overdue Reminder Testing
+
+To test the Telegram overdue reminder integration locally or on demand, a utility script is provided under `scratch/trigger-reminders.ts`.
+
+By default, the application checks for overdue reminders every 15 minutes and enforces a **60-minute cooldown** per action item to prevent duplicate spam. For testing purposes, the scratch script resets this cooldown so you can test notifications instantly.
+
+Run the trigger script using:
+```powershell
+npx ts-node scratch/trigger-reminders.ts
+```
+
+This will:
+1. Locate Alice's task from the database.
+2. Update its `dueDate` to yesterday (overdue) and status to `PENDING`.
+3. Clear any existing reminder history for this action item (bypassing the 60-minute cooldown).
+4. Run the `sendOverdueReminders()` service immediately, sending the Telegram message to your bot.
+
+## Troubleshooting & Key Fixes
+
+During the development and deployment phases, several critical technical issues were resolved:
+
+1. **IPv6 Database Connection Pooler**: Direct connections on port 5432 to Supabase require IPv6 support. Since local environments and Render standard runtimes do not support IPv6, the system was configured to use the IPv4-compatible connection pooler (Session Mode) on port 5432:
+   ```txt
+   DATABASE_URL="postgresql://postgres.[ref]:[password]@aws-1-ap-southeast-1.pooler.supabase.com:5432/postgres"
+   ```
+2. **Express v5 Query Param Handling**: Under Express v5, assigning directly to `req.query` (e.g. `req.query = parsedData`) throws a `TypeError: Cannot set property query of #<IncomingMessage>` because it is defined with a read-only getter. This was resolved by using `Object.defineProperty(req, 'query', { value: parsedData, writable: true })` inside the validation middleware.
+3. **Swagger Server URL Pathing**: Changed the Swagger configuration server host from absolute localhost URLs to relative root `/` paths. This ensures Swagger documentation and API test buttons work correctly in both local development and hosted Render deployment.
+
 ## Docker
 
 ```powershell
@@ -179,3 +207,4 @@ Add screenshots for:
 - Register/login API call
 - Meeting analysis response
 - Telegram overdue reminder demo
+

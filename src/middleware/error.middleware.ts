@@ -50,7 +50,7 @@ export function errorMiddleware(
     return sendError(res, { code: error.code, message: error.message }, error.statusCode);
   }
 
-  logger.error({ traceId, error }, "Unhandled request error");
+  logger.error({ traceId, err: error }, "Unhandled request error");
 
   return sendError(
     res,
