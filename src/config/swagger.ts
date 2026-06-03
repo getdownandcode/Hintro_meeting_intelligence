@@ -7,7 +7,10 @@ export const swaggerSpec = swaggerJSDoc({
       title: "Hintro Meeting Intelligence API",
       version: "1.0.0",
     },
-    servers: [{ url: "http://localhost:3000" }],
+    servers: [
+      { url: "/", description: "Active Host (Automatic)" },
+      { url: "http://localhost:3000", description: "Local Development" }
+    ],
     components: {
       securitySchemes: {
         bearerAuth: {
