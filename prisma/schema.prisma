@@ -1,0 +1,70 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum ActionItemStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+}
+
+model User {
+  id        String    @id @default(uuid())
+  email     String    @unique
+  password  String
+  createdAt DateTime  @default(now())
+  meetings  Meeting[]
+}
+
+model Meeting {
+  id          String       @id @default(uuid())
+  title       String
+  meetingDate DateTime
+  participants String[]
+  transcript  Json
+  createdById String
+  createdAt   DateTime     @default(now())
+  createdBy   User         @relation(fields: [createdById], references: [id], onDelete: Cascade)
+  actionItems ActionItem[]
+
+  @@index([createdById])
+  @@index([meetingDate])
+}
+
+model ActionItem {
+  id          String            @id @default(uuid())
+  task        String
+  assignee    String
+  status      ActionItemStatus  @default(PENDING)
+  dueDate     DateTime?
+  citations   Json
+  meetingId   String
+  createdAt   DateTime          @default(now())
+  meeting     Meeting           @relation(fields: [meetingId], references: [id], onDelete: Cascade)
+  reminders   ReminderHistory[]
+
+  @@index([meetingId])
+  @@index([status])
+  @@index([assignee])
+  @@index([dueDate])
+}
+
+model ReminderHistory {
+  id           String     @id @default(uuid())
+  actionItemId String
+  sentAt       DateTime   @default(now())
+  actionItem   ActionItem @relation(fields: [actionItemId], references: [id], onDelete: Cascade)
+
+  @@index([actionItemId])
+  @@index([sentAt])
+}
