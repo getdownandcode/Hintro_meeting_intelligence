@@ -9,7 +9,7 @@ export async function generateMeetingAnalysis(prompt: string) {
 
   const genAI = new GoogleGenerativeAI(env.GEMINI_API_KEY);
   const model = genAI.getGenerativeModel({
-    model: "gemini-2.5-flash",
+    model: "gemini-2.5-flash-lite",
     generationConfig: {
       responseMimeType: "application/json",
       temperature: 0.2,
