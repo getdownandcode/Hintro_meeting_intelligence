@@ -16,6 +16,14 @@ export async function generateMeetingAnalysis(prompt: string) {
     },
   });
 
-  const result = await model.generateContent(prompt);
-  return result.response.text();
+  try {
+    const result = await model.generateContent(prompt);
+    return result.response.text();
+  } catch (error: any) {
+    throw new AppError(
+      "GEMINI_API_ERROR",
+      `Gemini API call failed: ${error.message || error}`,
+      502,
+    );
+  }
 }
