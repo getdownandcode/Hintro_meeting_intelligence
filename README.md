@@ -204,7 +204,16 @@ For Render:
 Add screenshots for:
 
 - Swagger docs at `/api/docs`
+-- <img width="1917" height="869" alt="Screenshot 2026-06-03 235442" src="https://github.com/user-attachments/assets/3165b0bc-436f-4172-a0e6-33d6e7f465b3" />
 - Register/login API call
+- <img width="1760" height="419" alt="Screenshot 2026-06-03 213646" src="https://github.com/user-attachments/assets/bb6d643c-0413-4cdb-acdd-fa6aea06a5c4" />
+- <img width="1775" height="803" alt="Screenshot 2026-06-03 235513" src="https://github.com/user-attachments/assets/e94bea9c-1c57-44f4-8c10-5abc96634916" />
+- <img width="1774" height="870" alt="Screenshot 2026-06-03 235537" src="https://github.com/user-attachments/assets/0eee86ea-2b34-457e-9037-207b0fe8c94f" />
+<img width="1785" height="555" alt="Screenshot 2026-06-03 235748" src="https://github.com/user-attachments/assets/83634db3-a696-48e1-b575-c72aeab1d769" />
+
 - Meeting analysis response
+- <img width="1772" height="763" alt="Screenshot 2026-06-03 235851" src="https://github.com/user-attachments/assets/bde2f985-b27b-4958-ad37-715ec979a4e5" />
+- <img width="1738" height="858" alt="Screenshot 2026-06-03 235912" src="https://github.com/user-attachments/assets/ed1cb3aa-1844-4df4-94ac-b59461639d07" />
 - Telegram overdue reminder demo
+<img width="1438" height="860" alt="image" src="https://github.com/user-attachments/assets/f19e181d-8f92-49ea-81a1-84c150b514e8" />
 
